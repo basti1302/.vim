@@ -1,4 +1,4 @@
 .vim
 ====
 
-My vim configuration file and plug-ins folder
+My personal vim configuration file and plug-ins folder.

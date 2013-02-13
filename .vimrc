@@ -1,7 +1,3 @@
-let $VIMHOME = $HOME."/.vim"
-
-" let g:ruby_path = ':C:\ruby193\bin'
-
 " load bundles managed by pathogen
 call pathogen#infect()
 call pathogen#helptags()
@@ -50,9 +46,16 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber
-set undofile
 set hlsearch
+" Highlight matching parantheses in a sane style. Todo: Replace by rainbow
+" parantheses plug-in
+hi MatchParen cterm=bold ctermbg=none ctermfg=none
+if version >= 703
+  set relativenumber
+  set undofile
+else
+  set number
+endif
 
 " save automatically
 au FocusLost * :wa

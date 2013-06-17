@@ -18,9 +18,11 @@ if has("gui_running")
   set lines=40 columns=110
 endif
 
+" indent two spaces
+set shiftwidth=2
+
 " tabs
 set tabstop=2
-set shiftwidth=2
 set softtabstop=2
 set expandtab
 

@@ -26,6 +26,12 @@ set tabstop=2
 set softtabstop=2
 set expandtab
 
+" word wrap at column 80
+set textwidth=80
+
+" visualize 80 character boundary
+set colorcolumn=+1
+
 set encoding=utf-8
 set scrolloff=3
 set autoindent

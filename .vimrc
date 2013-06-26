@@ -41,6 +41,7 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set hlsearch
+"
 " Highlight matching parantheses in a sane style. Todo: Replace by rainbow
 " parantheses plug-in
 hi MatchParen cterm=bold ctermbg=none ctermfg=none
@@ -51,8 +52,14 @@ else
   set number
 endif
 
-" save automatically
-au FocusLost * :wa
+" highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+match ExtraWhitespace /\s\+\%#\@<!$/
+" automatically remove trailing whitespace when saving
+autocmd BufWritePre * :%s/\s\+$//e
+
+" automatically save when losing focus
+" au FocusLost * :wa
 
 " == KEY MAPPGINGS ==
 let mapleader = ","

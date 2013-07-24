@@ -1,3 +1,7 @@
+" Re-execute: :so $MYVIMRC
+" or, if vimrc is the current file:
+" :so %
+ 
 " load bundles managed by pathogen
 call pathogen#infect()
 call pathogen#helptags()
@@ -52,7 +56,6 @@ set hlsearch
 hi MatchParen cterm=bold ctermbg=none ctermfg=none
 if version >= 703
   set relativenumber
-  set undofile
 else
   set number
 endif
@@ -69,6 +72,7 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
+nnoremap <leader>home :cd $home/Documents/_home_/
 
 
 " NERDTree

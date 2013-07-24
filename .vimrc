@@ -57,9 +57,6 @@ else
   set number
 endif
 
-" save automatically
-au FocusLost * :wa
-
 " == KEY MAPPGINGS ==
 let mapleader = ","
 nnoremap <up> <nop>

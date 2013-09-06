@@ -1,7 +1,7 @@
 " Re-execute: :so $MYVIMRC
 " or, if vimrc is the current file:
 " :so %
- 
+
 " load bundles managed by pathogen
 call pathogen#infect()
 call pathogen#helptags()
@@ -11,7 +11,7 @@ set nocompatible
 filetype plugin indent on
 
 " colors and fonts
-colorscheme desert
+colorscheme harlequin
 set guifont=DejaVu_Sans_Mono:h12:cANSI
 set modelines=0
 
@@ -56,11 +56,8 @@ set hlsearch
 " Highlight matching parantheses in a sane style. Todo: Replace by rainbow
 " parantheses plug-in
 hi MatchParen cterm=bold ctermbg=none ctermfg=none
-if version >= 703
-  set relativenumber
-else
-  set number
-endif
+
+set number
 
 " highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen

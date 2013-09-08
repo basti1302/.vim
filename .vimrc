@@ -11,7 +11,7 @@ set nocompatible
 filetype plugin indent on
 
 " colors and fonts
-colorscheme harlequin
+colorscheme desert
 set guifont=DejaVu_Sans_Mono:h12:cANSI
 set modelines=0
 

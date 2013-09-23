@@ -8,6 +8,9 @@ call pathogen#helptags()
 
 set nocompatible
 
+" see http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
+set noesckeys
+
 filetype plugin indent on
 
 " colors and fonts

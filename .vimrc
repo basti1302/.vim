@@ -71,6 +71,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 " automatically save when losing focus
 " au FocusLost * :wa
 
+" == COMMANDS ==
+command W w
+
 " == KEY MAPPINGS ==
 let mapleader = ","
 nnoremap <up> <nop>

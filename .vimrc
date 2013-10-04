@@ -15,7 +15,12 @@ filetype plugin indent on
 
 " colors and fonts
 colorscheme desert
-set guifont=DejaVu_Sans_Mono:h12:cANSI
+if has("win32")
+  set guifont=Lucida_Console:h11:cANSI
+else 
+  set guifont=DejaVu_Sans_Mono:h12:cANSI
+endif
+
 set modelines=0
 
 " start with larger window

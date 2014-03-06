@@ -22,7 +22,7 @@ filetype plugin indent on
 colorscheme desert
 if has("win32")
   set guifont=Lucida_Console:h11:cANSI
-else 
+else
   set guifont=DejaVu_Sans_Mono:h12:cANSI
 endif
 
@@ -48,7 +48,9 @@ set expandtab
 set textwidth=80
 
 " visualize 80 character boundary
-set colorcolumn=+1
+if v:version >= 703
+  set colorcolumn=+1
+endif
 
 set encoding=utf-8
 set scrolloff=3

@@ -11,13 +11,14 @@ set nocompatible
 " see http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set noesckeys
 
+syntax on
 filetype plugin indent on
 
 " colors and fonts
 colorscheme desert
 if has("win32")
   set guifont=Lucida_Console:h11:cANSI
-else 
+else
   set guifont=DejaVu_Sans_Mono:h12:cANSI
 endif
 
@@ -93,6 +94,8 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <leader>home :cd $home/Documents/_home_/
 
+" == GO ==
+autocmd FileType go compiler go
 
 " NERDTree
 " to start NERDTree only if started without file argument

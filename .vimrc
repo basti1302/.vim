@@ -8,6 +8,11 @@ call pathogen#helptags()
 
 set nocompatible
 
+" Switch syntax highlighting on, when the terminal has colors
+if &t_Co > 2 || has("gui_running")
+  syntax on
+endif
+
 " see http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set noesckeys
 
@@ -44,7 +49,9 @@ set expandtab
 set textwidth=80
 
 " visualize 80 character boundary
-set colorcolumn=+1
+if v:version >= 703
+  set colorcolumn=+1
+endif
 
 set encoding=utf-8
 set scrolloff=3

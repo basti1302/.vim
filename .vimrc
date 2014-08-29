@@ -68,6 +68,7 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set hlsearch
+set ff=unix
 
 " Highlight matching parantheses in a sane style. Todo: Replace by rainbow
 " parantheses plug-in
@@ -86,6 +87,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " == COMMANDS ==
 command W w
+"command remove-dos-line-endings %s/\r//g
+
 
 " == KEY MAPPINGS ==
 let mapleader = ","
@@ -103,6 +106,13 @@ nnoremap <leader>home :cd $home/Documents/_home_/
 
 " == GO ==
 autocmd FileType go compiler go
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " NERDTree
 " to start NERDTree only if started without file argument

@@ -100,7 +100,7 @@ cmap w!! w !sudo tee > /dev/null %
 "command remove-dos-line-endings %s/\r//g
 
 " == KEY MAPPINGS ==
-let mapleader = ","
+let mapleader = " "
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -111,7 +111,9 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
-nnoremap <leader>home :cd $home/Documents/_home_/
+
+" Open explorer mode/netrw on SPACE,k
+map <leader>k :Explore<cr>
 
 " == GO ==
 autocmd FileType go compiler go

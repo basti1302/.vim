@@ -46,11 +46,11 @@ set softtabstop=2
 set expandtab
 
 " word wrap at column 80
-set textwidth=80
+" set textwidth=80
 
 " visualize 80 character boundary
 if v:version >= 703
-  set colorcolumn=+1
+  set colorcolumn=81
 endif
 
 set encoding=utf-8
@@ -86,9 +86,18 @@ autocmd BufWritePre * :%s/\s\+$//e
 " au FocusLost * :wa
 
 " == COMMANDS ==
-command W w
-"command remove-dos-line-endings %s/\r//g
+command! W w
+command! WA wa
+command! Wa wa
+command! WQ wq
+command! Wq wq
+command! Q q
+command! Qa qa
+command! QA qa
+" save changes to a file the needs sudo permissions even when opened without sudo
+cmap w!! w !sudo tee > /dev/null %
 
+"command remove-dos-line-endings %s/\r//g
 
 " == KEY MAPPINGS ==
 let mapleader = ","
@@ -119,3 +128,9 @@ endif
 " autocmd vimenter * if !argc() | NERDTree | endif
 " to start NERDTree always on startup:
 " autocmd vimenter * NERDTree
+
+" automatically reload .vimrc if it has changed
+augroup myvimrc
+  au!
+  au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END

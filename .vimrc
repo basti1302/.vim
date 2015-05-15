@@ -69,6 +69,8 @@ set backspace=indent,eol,start
 set laststatus=2
 set hlsearch
 set ff=unix
+" case insensitive search by default, use /\CFooBar to search case sensitive
+" set ignorecase
 
 " Highlight matching parantheses in a sane style. Todo: Replace by rainbow
 " parantheses plug-in
@@ -111,9 +113,17 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
-
+" use visual selection for search and replace: press CTRL-r in visual mode
+vnoremap <c-r> "hy:%s/<C-r>h//gc<left><left><left>
+vnoremap <s-r> "hy:%s//<C-r>h/gc<Home><right><right><right>
 " Open explorer mode/netrw on SPACE,k
 map <leader>k :Explore<cr>
+
+" use tree style for netrw
+let g:netrw_liststyle=3
+
+" open files in right split when using vsplit or when using v in netrw listing
+set splitright
 
 " == GO ==
 autocmd FileType go compiler go

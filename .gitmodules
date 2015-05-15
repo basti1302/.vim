@@ -4,3 +4,6 @@
 [submodule "bundle/bufkill.vim"]
 	path = bundle/bufkill.vim
 	url = git@github.com:vim-scripts/bufkill.vim.git
+[submodule "bundle/elm.vim"]
+	path = bundle/elm.vim
+	url = git@github.com:lambdatoast/elm.vim.git

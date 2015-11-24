@@ -20,7 +20,6 @@ syntax on
 filetype plugin indent on
 
 " colors and fonts
-colorscheme desert
 if has("win32")
   set guifont=Lucida_Console:h11:cANSI
 else
@@ -146,3 +145,13 @@ augroup myvimrc
   au!
   au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+
+if has("statusline")
+ set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
+endif
+
+" vimdiff with the default colors in solarized dark is totally unusable
+if &diff
+  colorscheme shine
+  highlight! link DiffText Todo
+endif

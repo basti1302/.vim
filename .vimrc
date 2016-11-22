@@ -117,28 +117,15 @@ vnoremap <c-r> "hy:%s/<C-r>h//gc<left><left><left>
 vnoremap <s-r> "hy:%s//<C-r>h/gc<Home><right><right><right>
 " Open explorer mode/netrw on SPACE,k
 map <leader>k :Explore<cr>
+" disable Escape, Caps Lock must be mapped to Esc on OS level
+"map <ESC> <Nop>
+"map! <ESC> <Nop>
 
 " use tree style for netrw
 let g:netrw_liststyle=3
 
 " open files in right split when using vsplit or when using v in netrw listing
 set splitright
-
-" == GO ==
-autocmd FileType go compiler go
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
-" NERDTree
-" to start NERDTree only if started without file argument
-" autocmd vimenter * if !argc() | NERDTree | endif
-" to start NERDTree always on startup:
-" autocmd vimenter * NERDTree
 
 " automatically reload .vimrc if it has changed
 augroup myvimrc
@@ -155,3 +142,42 @@ if &diff
   colorscheme shine
   highlight! link DiffText Todo
 endif
+
+" ******************************************************************************
+" PLUGIN SPECIFIC SETTINGS
+" ******************************************************************************
+
+" == ctrlp ==
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+" ignore node_modules and other irrelevant directories
+let g:ctrlp_custom_ignore = 'node_modules\|elm-stuff\|DS_Store\|git'
+" default: let g:ctrlp_working_path_mode = 'ra'
+" c -> Use parent of current open file as base directory every time CtrlP is
+"      invoked
+" a -> Use parent of current open file as base directory every time CtrlP,
+"      unless vim's cwd is an ancestor of the current open file
+" r -> Look for nearest .git etc.
+"      unless vim's cwd is an ancestor of the current open file
+let g:ctrlp_working_path_mode = 'a'
+
+" == ELM ==
+let g:elm_format_autosave = 1
+
+" == GO ==
+autocmd FileType go compiler go
+
+" == NERDTree ==
+" Ctrl-P -> Open NERDTree
+map <C-n> :NERDTreeToggle<CR>
+" to start NERDTree only if started without file argument
+" autocmd vimenter * if !argc() | NERDTree | endif
+" to start NERDTree always on startup:
+" autocmd vimenter * NERDTree
+" close vim if only NERDTree buffers remain
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif

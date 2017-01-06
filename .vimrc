@@ -52,6 +52,9 @@ if v:version >= 703
   set colorcolumn=81
 endif
 
+" yanking should also copy to system/OS clipboard
+set clipboard=unnamed
+
 set encoding=utf-8
 set scrolloff=3
 set autoindent
@@ -156,7 +159,7 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 " ignore node_modules and other irrelevant directories
-let g:ctrlp_custom_ignore = 'node_modules\|elm-stuff\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|elm-stuff\|.stack-work\|.DS_Store'
 " default: let g:ctrlp_working_path_mode = 'ra'
 " c -> Use parent of current open file as base directory every time CtrlP is
 "      invoked
@@ -173,7 +176,7 @@ let g:elm_format_autosave = 1
 autocmd FileType go compiler go
 
 " == NERDTree ==
-" Ctrl-P -> Open NERDTree
+" Ctrl-n -> Open NERDTree
 map <C-n> :NERDTreeToggle<CR>
 " to start NERDTree only if started without file argument
 " autocmd vimenter * if !argc() | NERDTree | endif

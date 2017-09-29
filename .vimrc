@@ -124,6 +124,9 @@ map <leader>k :Explore<cr>
 "map <ESC> <Nop>
 "map! <ESC> <Nop>
 
+" type ./ to unhighlight search results
+nmap <silent> ./ :nohlsearch<CR>
+
 " use tree style for netrw
 let g:netrw_liststyle=3
 
@@ -131,10 +134,10 @@ let g:netrw_liststyle=3
 set splitright
 
 " automatically reload .vimrc if it has changed
-augroup myvimrc
-  au!
-  au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
+" augroup myvimrc
+"   au!
+"   au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+" augroup END
 
 if has("statusline")
  set statusline=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P

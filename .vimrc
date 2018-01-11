@@ -100,6 +100,8 @@ command! Qa qa
 command! QA qa
 " save changes to a file the needs sudo permissions even when opened without sudo
 cmap w!! w !sudo tee > /dev/null %
+" delete buffer but keep split window
+command Bd bp|bd#
 
 "command remove-dos-line-endings %s/\r//g
 
@@ -115,6 +117,8 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
+nmap <Tab> :b#<CR>
+
 " use visual selection for search and replace: press CTRL-r in visual mode
 vnoremap <c-r> "hy:%s/<C-r>h//gc<left><left><left>
 vnoremap <s-r> "hy:%s//<C-r>h/gc<Home><right><right><right>
@@ -126,6 +130,7 @@ map <leader>k :Explore<cr>
 
 " type ./ to unhighlight search results
 nmap <silent> ./ :nohlsearch<CR>
+
 
 " use tree style for netrw
 let g:netrw_liststyle=3
@@ -177,6 +182,10 @@ let g:elm_format_autosave = 1
 
 " == GO ==
 autocmd FileType go compiler go
+
+" == JavaScript
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.es6 PrettierAsync
 
 " == NERDTree ==
 " Ctrl-n -> Open NERDTree

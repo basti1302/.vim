@@ -115,9 +115,14 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+nmap <silent> <RIGHT> :cnext<CR>
+nmap <silent> <LEFT> :cprev<CR>
+
 nnoremap j gj
 nnoremap k gk
 nmap <Tab> :b#<CR>
+
 
 " use visual selection for search and replace: press CTRL-r in visual mode
 vnoremap <c-r> "hy:%s/<C-r>h//gc<left><left><left>
@@ -187,9 +192,24 @@ autocmd FileType go compiler go
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.es6 PrettierAsync
 
+" == use ag for :grep if available
+if executable('ag')
+  " Note we extract the column as well as the file and line number
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepformat=%f:%l:%c%m
+endif
+
 " == NERDTree ==
-" Ctrl-n -> Open NERDTree
+" show hidden files (dotfiles)
+let NERDTreeShowHidden=1
+let NERDTreeIgnore = ['\.swp$']
+" Ctrl-n -> Toggle NERDTree
 map <C-n> :NERDTreeToggle<CR>
+" Space m -> Alternative for toggling NERDTree
+nmap <leader>m :NERDTreeToggle<CR>
+" Space n -> Reveal current file in NERDTree
+nmap <leader>n :NERDTreeFind<CR>
+
 " to start NERDTree only if started without file argument
 " autocmd vimenter * if !argc() | NERDTree | endif
 " to start NERDTree always on startup:
@@ -242,7 +262,7 @@ function ToggleHex()
 endfunction
 
 " toggle hex mode with :Hexmode
-nnoremap <C-H> :Hexmode<CR>
-inoremap <C-H> <Esc>:Hexmode<CR>
-vnoremap <C-H> :<C-U>Hexmode<CR>
+" nnoremap <C-H> :Hexmode<CR>
+" inoremap <C-H> <Esc>:Hexmode<CR>
+" vnoremap <C-H> :<C-U>Hexmode<CR>
 

@@ -49,7 +49,11 @@ set expandtab
 
 " visualize 80 character boundary
 if v:version >= 703
-  set colorcolumn=81
+  if expand("%:p:h") !~ '.*instana.*' || expand("%:p:h") =~ '.*haskell.*'
+    set colorcolumn=81
+  else
+    set colorcolumn=121
+  endif
 endif
 
 " yanking should also copy to system/OS clipboard

@@ -270,3 +270,6 @@ endfunction
 " inoremap <C-H> <Esc>:Hexmode<CR>
 " vnoremap <C-H> :<C-U>Hexmode<CR>
 
+" rainbow (rainbow parentheses)
+let g:rainbow_active = 1 " toggle with :RainbowToggle
+

@@ -25,3 +25,6 @@
 [submodule "bundle/lightline.vim"]
 	path = bundle/lightline.vim
 	url = git@github.com:itchyny/lightline.vim.git
+[submodule "bundle/rainbow"]
+	path = bundle/rainbow
+	url = git@github.com:luochen1990/rainbow.git

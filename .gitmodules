@@ -31,3 +31,6 @@
 [submodule "bundle/vim-pug"]
 	path = bundle/vim-pug
 	url = git@github.com:digitaltoad/vim-pug.git
+[submodule "bundle/editorconfig"]
+	path = bundle/editorconfig
+	url = git@github.com:editorconfig/editorconfig-vim.git

@@ -84,11 +84,18 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=none
 
 set number
 
+" without this setting, vim gets slow on long lines (like in markdown files
+" etc.)
+set synmaxcol=512
+
 " highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 match ExtraWhitespace /\s\+\%#\@<!$/
 " automatically remove trailing whitespace when saving
-autocmd BufWritePre * :%s/\s\+$//e
+augroup TrailingSpaces
+  autocmd!
+  autocmd BufWritePre * let w:wv = winsaveview() | %s/\s\+$//e | call winrestview(w:wv)
+augroup END
 
 " automatically save when losing focus
 " au FocusLost * :wa
@@ -190,11 +197,18 @@ let g:ctrlp_working_path_mode = 'a'
 let g:elm_format_autosave = 1
 
 " == GO ==
-autocmd FileType go compiler go
+augroup Golang
+  autocmd!
+  autocmd FileType go compiler go
+augroup END
 
 " == JavaScript
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.es6 PrettierAsync
+let g:prettier#quickfix_enabled = 0
+augroup JavaScript
+  autocmd!
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.es6 PrettierAsync
+augroup END
 
 " == use ag for :grep if available
 if executable('ag')
@@ -219,7 +233,10 @@ nmap <leader>n :NERDTreeFind<CR>
 " to start NERDTree always on startup:
 " autocmd vimenter * NERDTree
 " close vim if only NERDTree buffers remain
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup NERDTree
+  autocmd!
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 
 " == Hexmode ==
 " ex command for toggling hex mode - define mapping if desired

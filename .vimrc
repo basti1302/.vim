@@ -35,12 +35,9 @@ if has("gui_running")
   set lines=40 columns=110
 endif
 
-" indent two spaces
+" indentation/tabs (two spaces)
 set shiftwidth=2
-
-" tabs
 set tabstop=2
-set shiftwidth=2
 set softtabstop=2
 set expandtab
 
@@ -200,6 +197,9 @@ let g:elm_format_autosave = 1
 augroup Golang
   autocmd!
   autocmd FileType go compiler go
+  " Do not convert tabs into spaces in Golang files.
+  setlocal noexpandtab
+  autocmd BufWritePre *.go Fmt
 augroup END
 
 " == JavaScript

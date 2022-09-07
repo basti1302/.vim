@@ -53,6 +53,11 @@ if v:version >= 703
   endif
 endif
 
+if expand("%:p:h") =~ '.*instana/code/docs.*' || expand("%:p:h") =~ '.*ic/docs.*'
+  " The markdown in instana/docs is weird, disable syntax highlighting.
+  syntax off
+endif
+
 " yanking should also copy to system/OS clipboard
 set clipboard=unnamed
 

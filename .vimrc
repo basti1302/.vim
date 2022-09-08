@@ -182,7 +182,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --skip-vcs-ignores -g ""'
 endif
 " ignore node_modules and other irrelevant directories
 let g:ctrlp_custom_ignore = 'node_modules\|elm-stuff\|.stack-work\|.DS_Store'

@@ -46,7 +46,7 @@ set expandtab
 
 " visualize 80 character boundary
 if v:version >= 703
-  if expand("%:p:h") !~ '.*instana.*' || expand("%:p:h") =~ '.*haskell.*'
+  if expand("%:p:h") !~ '.*instana.*' && expand("%:p:h") !~ '.*dash0.*' && expand("%:p:h") !~ '.*dcd.*'
     set colorcolumn=81
   else
     set colorcolumn=121
@@ -203,7 +203,7 @@ augroup Golang
   autocmd!
   autocmd FileType go compiler go
   " Do not convert tabs into spaces in Golang files.
-  setlocal noexpandtab
+  autocmd FileType go setlocal noexpandtab
   autocmd BufWritePre *.go Fmt
 augroup END
 
@@ -212,7 +212,7 @@ let g:prettier#autoformat = 0
 let g:prettier#quickfix_enabled = 0
 augroup JavaScript
   autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.es6 PrettierAsync
+  autocmd BufWritePre *.js,*.cjs*,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.es6,*.html PrettierAsync
 augroup END
 
 " == use ag for :grep if available
